@@ -177,11 +177,7 @@ app.post("/toggle-live", async (request, response) => {
 				}
 			})
 		);
-		type.save(error => {
-			if (error) {
-				console.log(error);
-			}
-		});
+		type.save();
 		response.end();
 	} catch (error) {
 		console.log(error);
@@ -203,11 +199,7 @@ app.post("/delete", async (request, response) => {
 					}
 				}
 			}
-			type.save(error => {
-				if (error) {
-					console.log(error);
-				}
-			});
+			type.save();
 			if (wasDeleted) {
 				response.send(
 					JSON.stringify("The out-of-date prices have been deleted")
@@ -222,57 +214,57 @@ app.post("/delete", async (request, response) => {
 });
 
 app.post("/submit-product", (request, response) => {
-	const type = request.body.type;
-	const SPM = request.body.SPM;
-	const newType = new Type({
-		type,
-		SPM,
-		products: []
-	});
-	newType.save(error => {
-		if (error) {
-			console.log(error);
-		}
-	});
-	response.send(JSON.stringify(newType._id));
+	try {
+		const type = request.body.type;
+		const SPM = request.body.SPM;
+		const newType = new Type({
+			type,
+			SPM,
+			products: []
+		});
+		newType.save();
+		response.send(JSON.stringify(newType._id));
+	} catch (error) {
+		console.log(error);
+	}
 });
 
 app.post("/submit-price", async (request, response) => {
-	const id = request.body.id;
-	const product = request.body.product;
-	const deal = request.body.deal;
-	const price = request.body.price;
-	const size = request.body.size;
-	const sPrice = request.body.sPrice;
-	const shop = request.body.shop;
-	const time = moment().format("YYYY-MM-DD HH:mm");
-	const user = request.body.user;
-	const type = await Type.findOne({ _id: id }).exec();
-	const products = type.products;
-	const existing = products.map(v => v.product);
-	if (existing.indexOf(product) === -1) {
-		products.push({
-			product,
-			prices: [{ deal, price, size, sPrice, shop, time, user, live: true }]
-		});
-	} else {
-		products[existing.indexOf(product)].prices.push({
-			deal,
-			price,
-			size,
-			sPrice,
-			shop,
-			time,
-			user,
-			live: true
-		});
-	}
-	type.save(error => {
-		if (error) {
-			console.log(error);
+	try {
+		const id = request.body.id;
+		const product = request.body.product;
+		const deal = request.body.deal;
+		const price = request.body.price;
+		const size = request.body.size;
+		const sPrice = request.body.sPrice;
+		const shop = request.body.shop;
+		const time = moment().format("YYYY-MM-DD HH:mm");
+		const user = request.body.user;
+		const type = await Type.findOne({ _id: id }).exec();
+		const products = type.products;
+		const existing = products.map(v => v.product);
+		if (existing.indexOf(product) === -1) {
+			products.push({
+				product,
+				prices: [{ deal, price, size, sPrice, shop, time, user, live: true }]
+			});
+		} else {
+			products[existing.indexOf(product)].prices.push({
+				deal,
+				price,
+				size,
+				sPrice,
+				shop,
+				time,
+				user,
+				live: true
+			});
 		}
-	});
-	response.end();
+		type.save();
+		response.end();
+	} catch (error) {
+		console.log(error);
+	}
 });
 
 app.get("/search", async (request, response) => {
