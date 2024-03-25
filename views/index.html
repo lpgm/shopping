@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Don't overpay!</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css"
+    />
+    <link rel="stylesheet" href="/style.css" />
+    <script src="/client.js" defer></script>
+  </head>
+  <body>
+    <h1>STEP 1: Select an existing product category and get prices</h1>
+    <form id="get-all-prices">
+      <label for="get-type">Product category:</label>
+      <select id="get-type"></select>
+      <input type="submit" value="GET PRICES" />
+    </form>
+    <div class="bottom" id="all-prices">Results will go here</div>
+    <div class="hidden" id="hidden-delete-section">
+      <form id="delete">
+        <label for="password">Password: </label>
+        <input type="password" id="password" required />
+        <input type="submit" value="DELETE OUT-OF-DATE PRICES" />
+      </form>
+      <div class="bottom" id="delete-confirm"></div>
+    </div>
+    <h1>STEP 2: Submit a new product category if it's not there already</h1>
+    <form id="submit-product">
+      <label for="generic-product">Product category (e.g. 'tea bags'):</label>
+      <input type="text" id="generic-product" required />
+      <label for="standard-price-measurement"
+        >Standard price measurement:</label
+      >
+      <select id="standard-price-measurement">
+        <option value="£/unit">£/unit</option>
+        <option value="p/unit">p/unit</option>
+        <option value="£/kg">£/kg</option>
+        <option value="£/100g">£/100g</option>
+        <option value="p/100g">p/100g</option>
+        <option value="£/ltr">£/ltr</option>
+        <option value="£/100ml">£/100ml</option>
+        <option value="p/100ml">p/100ml</option>
+        <option value="p/tissue">p/tissue</option>
+        <option value="p/100_sheets">p/100_sheets</option>
+        <option value="p/tea_bag">p/tea_bag</option>
+        <option value="p/egg">p/egg</option>
+      </select>
+      <input type="submit" value="SUBMIT" />
+    </form>
+    <div class="bottom" id="product-confirm"></div>
+    <h1>
+      STEP 3: Submit a new price/product for the category selected in step 1
+    </h1>
+    <form id="submit-price">
+      <label for="specific-product"
+        >Specific product (e.g. 'Typhoo' or 'own brand'):</label
+      >
+      <input type="text" id="specific-product" required />
+      <label for="deal">Deal:</label>
+      <select id="deal">
+        <option value="n/a">normal price/not sure</option>
+        <option value="reduced">reduced price</option>
+        <option value="bogof">buy one get one free</option>
+        <option value="2-for-1">2-for-1</option>
+        <option value="3-for-2">3-for-2</option>
+        <option value="other">other multi-buy</option>
+      </select>
+      <label for="price"
+        >Price in pounds, taking any multi-buy into account:</label
+      >
+      <input type="text" id="price" placeholder="£" required />
+      <label for="size"
+        >Size, taking any multi-buy into account (e.g. '1kg' or
+        '4x500ml'):</label
+      >
+      <input type="text" id="size" required />
+      <label for="standardised-price"
+        >Standardised price - just the number, no units:</label
+      >
+      <h6>
+        For example, if a 125ml product costs 75p, and the standard price
+        measurement is £/ltr, the standardised price is worked out as follows:
+        75p/125ml &rarr; £0.75/0.125ltr &rarr; 0.75&divide;0.125 = 6
+      </h6>
+      <h6>
+        The website should calculate the standardised price for you, but please
+        check it's right
+      </h6>
+      <input type="text" id="standardised-price" required />
+      <label for="shop">Shop:</label>
+      <select id="shop"></select>
+      <label for="user">Your username:</label>
+      <input type="text" id="user" required />
+      <input type="submit" value="SUBMIT" />
+    </form>
+    <div class="bottom" id="price-confirm"></div>
+    <h1>SEARCH CATEGORIES, PRODUCTS, AND USERNAMES</h1>
+    <h6>
+      Your search term is converted into a
+      <a href="https://www.regular-expressions.info/" target="_blank"
+        >regular expression</a
+      >
+    </h6>
+    <form id="search">
+      <label for="search-term">Search term:</label>
+      <input type="text" id="search-term" />
+      <input type="submit" value="SEARCH" />
+    </form>
+    <div class="bottom" id="search-results">Results will go here</div>
+    <h1>GET ALL PRICES AT A PARTICULAR SHOP</h1>
+    <form id="get-shop-prices">
+      <label for="get-shop">Shop:</label>
+      <select id="get-shop"></select>
+      <input type="submit" value="GET PRICES" />
+    </form>
+    <div class="bottom" id="shop-prices">Results will go here</div>
+    <div class="modal hidden">
+      <div class="modal-close">X</div>
+      <div class="modal-inside"><table></table></div>
+    </div>
+  </body>
+</html>

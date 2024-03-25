@@ -1,0 +1,164 @@
+* {
+    box-sizing: border-box;
+  }
+  
+  body {
+    position: absolute;
+    margin: 10px;
+    background-color: teal;
+    color: white;
+    font-family: verdana;
+    font-size: 14px;
+  }
+  
+  b,
+  strong {
+    font-weight: bold;
+  }
+  
+  h1 {
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 16px;
+  }
+  
+  h6 {
+    margin-bottom: 5px;
+    font-size: 10px;
+  }
+  
+  a {
+    color: white;
+  }
+  
+  label {
+    margin-bottom: 5px;
+  }
+  
+  input,
+  select {
+    -webkit-appearance: none;
+    -webkit-border-radius: 0;
+    margin-bottom: 10px;
+    font-family: verdana;
+  }
+  
+  input[type="text"],
+  input[type="password"],
+  select {
+    border: 5px solid grey;
+    padding: 10px;
+    background-color: white;
+    color: black;
+  }
+  
+  input[type="submit"] {
+    border: 5px solid grey;
+    padding: 10px;
+    background-color: lightgrey;
+    color: black;
+  }
+  
+  .bottom {
+    margin-bottom: 20px;
+  }
+  
+  @media screen and (min-width: 750px) {
+    .row {
+      display: flex;
+    }
+  
+    .row-split {
+      flex: 1;
+      display: flex;
+    }
+  
+    .cell {
+      flex: 1;
+      padding: 2px;
+    }
+  }
+  
+  @media screen and (max-width: 749px) {
+    .row {
+      display: flex;
+    }
+  
+    .row-split {
+      display: flex;
+    }
+  
+    .cell {
+      flex: 1;
+      padding: 2px;
+    }
+  }
+  
+  .pointable {
+    cursor: pointer;
+  }
+  
+  .dead-price {
+    text-decoration: line-through;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  @media screen and (max-width: 749px) {
+    #get-all-prices * {
+      display: block;
+    }
+  }
+  
+  #submit-price * {
+    display: block;
+  }
+  
+  #submit-product * {
+    display: block;
+  }
+  
+  .shop-lookup {
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    max-width: 100%;
+    height: 400px;
+    max-height: 100%;
+    border: 2px solid black;
+    background-color: white;
+    color: black;
+  }
+  
+  .modal-close {
+    position: fixed;
+    top: 0;
+    right: 0;
+    padding: 1%;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .modal-inside {
+    position: absolute;
+    top: 10%;
+    left: 0;
+    width: 100%;
+    height: 90%;
+    overflow: auto;
+  }
+  
+  .modal-inside table td {
+    padding: 5px;
+  }
+  
